@@ -1,7 +1,7 @@
 # Encoding: utf-8
 
 # --
-# Copyright (c) 2008-2022 Net-ng.
+# Copyright (c) 2008-2023 Net-ng.
 # All rights reserved.
 #
 # This software is licensed under the BSD License, as described in
@@ -9,15 +9,13 @@
 # this distribution.
 # --
 
-"""Provides classes to interact with AWS"""
+"""Provides classes to interact with AWS."""
 
 import boto3
 from nagare.services import plugin
 
 
 class AWS(plugin.Plugin):
-    """
-    """
     LOAD_PRIORITY = 10
     CONFIG_SPEC = dict(
         plugin.Plugin.CONFIG_SPEC,
@@ -27,20 +25,11 @@ class AWS(plugin.Plugin):
         session_token='string(default=None)',
         region='string(default=None)',
         ssl='boolean(default=True)',
-        verify='boolean(default=True)'
+        verify='boolean(default=True)',
     )
 
     @staticmethod
-    def _create_resource(
-            service,
-            access_key_id,
-            secret_access_key,
-            session_token,
-            region,
-            ssl,
-            activated,
-            **config
-    ):
+    def _create_resource(service, access_key_id, secret_access_key, session_token, region, ssl, activated, **config):
         return boto3.resource(
             service,
             aws_access_key_id=access_key_id,
@@ -48,7 +37,7 @@ class AWS(plugin.Plugin):
             aws_session_token=session_token,
             region_name=region,
             use_ssl=ssl,
-            **config
+            **config,
         )
 
     def create_resource(self, service):

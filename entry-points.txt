@@ -1,0 +1,2 @@
+[nagare.services]
+aws = nagare.services.aws.resources:AWS
